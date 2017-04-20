@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>T. Kelly Learning Designer</title>
+    <link href='https://fonts.googleapis.com/css?family=Oswald:400,300,700' rel='stylesheet' type='text/css'>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'projects/style.css' %}">
+  </head>
+
+  <body>
+    <div class="h-container">
+
+      <div class="header">
+        <div class="hgroup">
+          <a href="{% url 'myportfolio:index' %}">
+            <img class="img-responsive img-logo" src="/media/T_Kelly_Headshot.png" alt="Portfolio Logo">
+          </a>
+          <h1 class="title-name"><a href="{% url 'myportfolio:index' %}">TOM KELLY</a></h1>
+          <h1 class="title-title"><a href="{% url 'myportfolio:index' %}">LEARNING DESIGNER</a></h1>
+        </div>
+        <div class="hnav">
+          <h1 class="work-nav"><a href="{% url 'myportfolio:index' %}">WORK</a></h1>
+          <h1 class="blog-nav"><a href="blog.html">BLOG</a></h1>
+          <h1 class="contact-nav"><a href="#contact-me">CONTACT</a></h1>
+        </div>
+        <div class="mobile-nav">
+          <div class="menu-btn" id="menu-btn">
+            <div></div>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <div class="responsive-menu">
+            <ul>
+              <li class="work-nav-mobile"><a href="{% url 'myportfolio:index' %}">WORK</a></li>
+              <li class="blog-nav-mobile"><a href="blog.html">BLOG</a></li>
+              <li class="contact-nav-mobile"><a href="#contact-me">CONTACT</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    {% if request.method == 'POST' %}
+    <h1 class="email-recognition">Thanks for reaching out! I'll return your email as soon as possible.</h1>
+    {% endif %}
+
+    <div class="container">
+
+      <div class="main-project">
+        <div class="big-img">
+          <img class="img-responsive img-project-big" src="{{ project.large_image.url }}" alt="Project image">
+        </div>
+        <div class="big-text">
+          <h1 class="title">{{ project.project_title }}</h1>
+          <h2 class="comp">{{ project.competencies }}</h2>
+          <h2 class="comp">{{ project.technologies }}</h2>
+          <p class="descript">{{ project.project_description | safe }}</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="f-container" id="contact-me">
+
+      <div class="footer">
+        <div class="about">
+          <h1 class="about-me">ABOUT ME</h1>
+          <p class="footer-p">An educator for nearly 10 years, I entered the online education space in 2010 while working for an international nonprofit organization. Over the past 5 years, I have worked with content experts in the higher education and nonprofit sectors to develop and produce online education that pushes boundaries and strives to enhance learning for all.</p>
+        </div>
+        <div class="email">
+          <h1 class="hello">CONTACT ME!</h1>
+          <form method="post">
+            {% csrf_token %}
+            <label for="user_email">EMAIL ADDRESS</label>
+            <br>
+            <textarea name="user_email" id="user_email" rows="1" cols="40"></textarea>
+            <br>
+            <label for="user_message">MESSAGE</label>
+            <br>
+            <textarea name="user_message" id="user_message" rows="4" cols="40"></textarea>
+            <br>
+            <input type="submit" name="send" value="SEND MESSAGE">
+          </form>
+        </div>
+      </div>
+
+    </div>
+
+  </body>
+
+</html>
